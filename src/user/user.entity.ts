@@ -6,8 +6,10 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar')
-  name: string;
+  @Column('varchar',{unique: true})
+  username: string;
+ @Column('varchar')
+ password: string;
 
   @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
