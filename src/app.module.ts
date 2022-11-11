@@ -23,7 +23,7 @@ import { UserModule } from './user/user.module';
       entities: ['dist/**/*.entity.{ts,js}'],
       synchronize: true,
       username: 'root',
-      password: '',
+      password: '123456',
     }),
   ],
   controllers: [AppController],

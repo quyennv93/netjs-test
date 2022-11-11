@@ -6,11 +6,13 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar',{unique: true})
+  @Column('varchar', { unique: true })
   username: string;
- @Column('varchar')
- password: string;
+  @Column('varchar')
+  password: string;
 
-  @OneToMany(() => Post, (post) => post.user)
+  @OneToMany(() => Post, (post) => post.user, {
+    cascade: true,
+  })
   posts: Post[];
 }

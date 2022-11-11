@@ -7,12 +7,21 @@ import { CreatePostDto } from './dto/create-post-dto';
 
 @Injectable()
 export class PostService {
-    constructor(
-        @InjectRepository (Post)
-        private readonly PostRepo:Repository<Post>
-    ){}
-    async create (user:User,post:CreatePostDto){
-        const newPost = await this.PostRepo.create({...post,user:user})
-        return await this.PostRepo.save(newPost)
-    }
+  constructor(
+    @InjectRepository(Post)
+    private readonly PostRepo: Repository<Post>,
+  ) {}
+  async create(user: User, post: CreatePostDto) {
+    const newPost = await this.PostRepo.create({ ...post, user: user });
+    return await this.PostRepo.save(newPost);
+  }
+  async findOneById(id: number): Promise<Post> {
+    return await this.PostRepo.findOne({
+      where: { id },
+      relations: ['user'],
+    });
+  }
+  async findAll() {
+    return await this.PostRepo.find();
+  }
 }
